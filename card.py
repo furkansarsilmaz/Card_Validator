@@ -15,20 +15,38 @@ class Card :
 
         self.root.Button_1 = Button(self.root,text="Submit",width=6,height=2,command= self.getCardID)
         self.root.Button_1.pack(pady=10)
-    
+
     def getCardID (self):
         nums = self.root.Text_1.get("1.0",END).strip()
         print(nums)
         self.getEvenNum(nums)
         self.getOddNum(nums)
-    
+        
+        evenNums = self.getEvenNum(nums)
+        oddNums = self.getOddNum(nums)
+        total = evenNums + oddNums
+
+        if total % 10 == 0 :
+            print("It is valid")
+        else:
+            print("It is not valid")
+
     def getEvenNum(self,nums):
+        result = 0
         for i in range(len(nums)-2, -1, -2):
-            print(nums[i]) 
+            num = int(nums[i])
+            num *= 2
+            if num > 9 :
+                num = num % 10 + num // 10 
+            result += num
+        return result
 
     def getOddNum(self,nums):
+        result = 0
         for i in range(len(nums)-1,-1,-2):
-            print(nums[i])
+            num = int(nums[i])
+            result += num
+        return result
 
 if __name__ == "__main__":
     root = Tk ()
