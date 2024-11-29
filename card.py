@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox 
 class Card :
     def __init__(self,root):
         """
@@ -18,7 +19,10 @@ class Card :
 
     def getCardID (self):
         nums = self.root.Text_1.get("1.0",END).strip()
-        print(nums)
+        if not nums.isdigit():
+            messagebox.showerror("Warning","Please enter digits")
+            return
+            
         self.getEvenNum(nums)
         self.getOddNum(nums)
         
@@ -27,9 +31,9 @@ class Card :
         total = evenNums + oddNums
 
         if total % 10 == 0 :
-            print("It is valid")
+            messagebox.showinfo("Valid","It is valid.")
         else:
-            print("It is not valid")
+            messagebox.showwarning("Warning","It is not valid.")
 
     def getEvenNum(self,nums):
         result = 0
