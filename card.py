@@ -1,21 +1,26 @@
 from tkinter import *
-from tkinter import messagebox 
+from tkinter import messagebox
+import sys
 class Card :
     def __init__(self,root):
         """
         Constructor
         """
         self.root = root 
-        self.root.geometry("300x200")
+        self.root.title("Card Validator")
+        self.root.geometry("300x230")
         self.root.configure(background = "gray")
-        self.root.Label_1 = Label(self.root,text="Welcome\nEnter your card :",font=("Arial",12))
+        self.root.Label_1 = Label(self.root,text="Welcome\nEnter your card ",font=("Arial",12,"bold"),background="gray")
         self.root.Label_1.pack(pady=10)
 
-        self.root.Text_1 = Text(self.root,width=11,height=1,relief=GROOVE)
+        self.root.Text_1 = Text(self.root,width=16,height=1,relief=GROOVE)
         self.root.Text_1.pack(pady=10)
 
-        self.root.Button_1 = Button(self.root,text="Submit",width=6,height=2,command= self.getCardID)
-        self.root.Button_1.pack(pady=10)
+        self.root.Button_1 = Button(self.root,text="Submit",font="bold",width=6,height=2,command= self.getCardID)
+        self.root.Button_1.pack(pady=5)
+
+        self.root.Button_2 = Button(self.root,text="Exit",font="bold",width=6,height=2,command=lambda:quit())
+        self.root.Button_2.pack()
 
     def getCardID (self):
         nums = self.root.Text_1.get("1.0",END).strip()
