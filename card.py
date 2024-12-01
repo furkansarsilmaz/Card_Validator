@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import sys
+import re
 class Card :
     def __init__(self,root):
         """
@@ -27,18 +28,32 @@ class Card :
         if not nums.isdigit():
             messagebox.showerror("Warning","Please enter digits")
             return
-            
         self.getEvenNum(nums)
         self.getOddNum(nums)
-        
+
+        cardtype = self.getCardType(nums)
         evenNums = self.getEvenNum(nums)
         oddNums = self.getOddNum(nums)
         total = evenNums + oddNums
 
         if total % 10 == 0 :
-            messagebox.showinfo("Valid","It is valid.")
+            messagebox.showinfo("Valid","It is valid. "+cardtype)
         else:
             messagebox.showwarning("Warning","It is not valid.")
+
+    def getCardType(self,nums):
+        match = re.search(r'^4',nums)
+        if match :
+            return ("Card type is visa.")
+        elif re.search(r'^5',nums):
+            return ("Card type is master card")
+        elif re.search(r'^3',nums):
+            return ("Card type is american express")
+        else :
+            return
+
+
+
 
     def getEvenNum(self,nums):
         result = 0
