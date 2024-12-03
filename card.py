@@ -24,6 +24,11 @@ class Card :
         self.root.Button_2.pack()
 
     def getCardID (self):
+        """
+        Takes number from textbar and validates with
+        functions. If total can divide with 10 and remains 0
+        it is a valid card 
+        """
         nums = self.root.Text_1.get("1.0",END).strip()
         if not nums.isdigit():
             messagebox.showerror("Warning","Please enter digits")
@@ -42,20 +47,27 @@ class Card :
             messagebox.showwarning("Warning","It is not valid.")
 
     def getCardType(self,nums):
+        """
+        checks card's first number with regex module. Returns value
+        with if-else statement
+
+        """
         match = re.search(r'^4',nums)
         if match :
-            return ("Card type is visa.")
+            return "Card type is visa."
         elif re.search(r'^5',nums):
-            return ("Card type is master card")
+            return "Card type is master card"
         elif re.search(r'^3',nums):
-            return ("Card type is american express")
+            return "Card type is american express"
         else :
-            return
-
-
-
+            return "Card type is unknown"
 
     def getEvenNum(self,nums):
+        """
+        looks even numbers in card. Reaches with for loop and
+        multiply with 2. If the number is two digit,takes as single.
+        Finally assings it to temporary variable and returns it.
+        """
         result = 0
         for i in range(len(nums)-2, -1, -2):
             num = int(nums[i])
@@ -66,6 +78,11 @@ class Card :
         return result
 
     def getOddNum(self,nums):
+        """
+        Looks for odd numbers in card. Reaches with for loop.
+        assigns each 'i' to temporary variable and returns temporary
+        variable.
+        """
         result = 0
         for i in range(len(nums)-1,-1,-2):
             num = int(nums[i])
